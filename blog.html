@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <link rel="stylesheet" href="navbar.css"/>
+    <link rel="stylesheet" href="maincss.css"/>
+    <title>OLED TV</title>
+</head>
+<body>
+
+<!-- Nav menu -->
+<div class="wrapper" style="box-shadow: 0px 0px 0px;max-width: 100%;">
+    <nav style="max-width: 1200px;margin: 0 auto;padding: 0px 20px;">
+        <!-- <a href="#" class="logo" style="display: grid;">
+            <svg width="128px" height="60px" viewBox="90 15 124 60" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+        <!--<desc>Created with Sketch.</desc>
+        <defs></defs>
+        <path class="movinglogo" d="M92,55.3517013 L92,103.14209" id="Stroke-12" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M94,74 L210,74" id="Stroke-12" stroke="#FFFFFF" stroke-width="2"
+              stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M100,52.1459205 L100,103.14209" id="Stroke-13" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M108,50 L108,103.14209" id="Stroke-14" stroke="#FFFFFF" stroke-width="2"
+              stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M116,49.9648003 L116,103.14209" id="Stroke-15" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M124,52.0421408 L124,103.14209" id="Stroke-16" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M132,54.207588 L132,103.14209" id="Stroke-17" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M140,57.4549402 L140,103.14209" id="Stroke-18" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M148,59.7410947 L148,103.14209" id="Stroke-19" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M156,60.7705138 L156,103.14209" id="Stroke-20" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M164,59.6868773 L164,103.14209" id="Stroke-21" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M172,56.4734051 L172,103.14209" id="Stroke-22" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M180,49.799018 L180,103.14209" id="Stroke-23" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M188,42.3419581 L188,103.14209" id="Stroke-24" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M196,35.8617977 L196,103.14209" id="Stroke-25" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M204,29.3524204 L204,103.14209" id="Stroke-26" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M212,23.9352737 L212,103.14209" id="Stroke-27" stroke="#FFFFFF"
+              stroke-width="2" stroke-linecap="square" fill="none"></path>
+    </svg>
+    <!-- <svg width="128px" height="4px" viewBox="90 0 124 3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path class="movinglogo" d="M94,2 L200,2" id="Stroke-12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" fill="none"></path>
+        <path class="movinglogo" d="M110,2 L210,2" id="Stroke-27" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" fill="none"></path>
+    </svg> -->
+        <!--</a>-->  <img class="logo" style="" class="" src="DEBESTE2.png" alt="OLED TV LOGO">
+        <input type="checkbox" name="" id="toggle">
+        <label for="toggle"><i class="material-icons" style="font-size: 3rem;">menu</i></label>
+        <div class="menu">
+            <ul>
+                <li><a class="hover-underline-animation" href="#">Home</a></li>
+                <li><a class="hover-underline-animation" href="#">Top 5</a></li>
+                <li><a class="hover-underline-animation" href="#">Beste Aanbieding</a></li>
+                <!-- <li><a href="#">Services</a></li> -->
+            </ul> <!-- Nav menu -->
+        </div>
+    </nav>
+</div>
+
+<div class="container" style="padding: 20px;">
+    <div class="bloggrid">
+        <div class="blog1">
+            <h1>De nieuwe OLED uitgelegd</h1>
+            <p>OLED staat voor organic light emitting device</p>
+            <h3>Kartofelsalat</h3>
+            <p>HET IS AL LAAT TOCH</p>
+        </div>
+        <div class="photo1">
+            <p>Meuk</p>
+        </div>
+    </div>
+    <div class="bloggrid bloggridreverse">
+        <div class="blog2">
+            <p>Meuk</p>
+        </div>
+        <div class="photo2">
+            <p>Meuk</p>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

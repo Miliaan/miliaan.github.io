@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.text-container {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.moving-text {
+    position: absolute;
+    white-space: nowrap;
+    animation: moving-text-1 15s linear infinite,
+               moving-text-2 18s linear infinite,
+               moving-text-3 21s linear infinite;
+}
+
+@keyframes moving-text-1 {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes moving-text-2 {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes moving-text-3 {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="text-container">
+    <div class="moving-text">Hello World! This is a very long text that will never stop. You can adjust the text or the translate points in the animation to make it look better.</div>
+</div>
+
+</body>
+</html>

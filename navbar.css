@@ -1,0 +1,84 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 10px 20px;
+    /* background: url("goedblob.svg"); */
+    background-size: 500px;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-position-y: -150px;
+    background-position-x: -135px;
+}
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: hsl(283, 100%, 13%);
+    padding: 2rem 3.5rem;
+    border-radius: 0.4rem;
+    background: url("blob.png");
+    background-size: 300px;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-position-y: -20px;
+    background-position-x: ;
+    margin: 0 -3.5rem; */
+}
+nav .logo {
+    font-weight: 700;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+nav a {
+    text-decoration: none;
+    color: #5b5b5b;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+nav #toggle,
+nav label {
+    display: none;
+}
+
+@media (max-width: 40.625em) {
+    nav .menu {
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+    }
+    nav a {font-size: 2rem;}
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 2.5rem 0;
+    }
+    nav label {
+        display: inline-flex;
+        color: black;
+        cursor: pointer;
+    }
+    nav #toggle:checked ~ .menu {
+        height: 100%;
+    }
+}
+.material-icons {color: #424242 !important;}

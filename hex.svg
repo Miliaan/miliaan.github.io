@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <path d="M 235 29.3 Q 250 20.701 265 29.3 L 435 126.752 Q 450 135.351 450 152.548 L 450 347.452 Q 450 364.65 435 373.248 L 265 470.7 Q 250 479.299 235 470.7 L 65 373.248 Q 50 364.65 50 347.452 L 50 152.548 Q 50 135.35 65 126.752 Z" style="fill: rgb(216, 216, 216); stroke-linejoin: bevel; stroke-width: 35px; fill-rule: nonzero; fill-opacity: 0; stroke: rgb(238, 212, 131);" bx:shape="n-gon 250 250 230.94 229.299 6 0.075 1@3b58e961"/>
+</svg>
