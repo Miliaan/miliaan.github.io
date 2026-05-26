@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuisXperts - Pure Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #060608;
+            --bg-card: #111115;
+            --bg-card-hover: #16161F;
+            --accent: #00F5D4;
+            --accent-glow: rgba(0, 245, 212, 0.2);
+            --text-primary: #FAFAFA;
+            --text-muted: #A1A1AA;
+            --border: rgba(255, 255, 255, 0.05);
+            --radius: 20px;
+            
+            /* Shop Kleuren conform jouw stijl */
+            --color-bol: #0044ff;
+            --color-coolblue: #ff6600;
+            --color-amazon: #141920;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 40px;
+            overflow-x: hidden;
+        }
+
+        /* HERO FRONT-PAGE BINNENKOMER */
+        .hero {
+            padding: 60px 24px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(0, 245, 212, 0.12) 0%, transparent 70%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.3rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 400px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        main {
+            max-width: 500px; /* Perfect mobiel formaat */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin: 32px 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            border-radius: 2px;
+        }
+
+        .bento-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 1. INTERACTIEVE GRIP VISUALIZER */
+        .grip-visualizer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 160px;
+            margin-bottom: 20px;
+            background: #0d0d12;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .mouse-outline {
+            width: 70px;
+            height: 120px;
+            border: 2px solid #27273a;
+            border-radius: 35px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .mouse-wheel {
+            width: 6px;
+            height: 16px;
+            background: #27273a;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        /* Grip Heatmaps / Contactpunten */
+        .grip-zone {
+            position: absolute;
+            background: var(--accent);
+            opacity: 0;
+            filter: blur(6px);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        /* Dynamische states via body-classes */
+        body[data-grip="palm"] .mouse-outline { border-color: rgba(0, 245, 212, 0.4); box-shadow: inset 0 0 20px var(--accent-glow); }
+        body[data-grip="palm"] .zone-palm { opacity: 0.7; width: 45px; height: 50px; bottom: 10px; left: 12px; }
+        body[data-grip="palm"] .zone-fingers { opacity: 0.7; width: 16px; height: 35px; top: 10px; left: 12px; }
+        body[data-grip="palm"] .zone-fingers-right { opacity: 0.7; width: 16px; height: 35px; top: 10px; right: 12px; }
+
+        body[data-grip="claw"] .zone-fingers { opacity: 0.9; width: 12px; height: 12px; top: 15px; left: 14px; box-shadow: 0 0 10px var(--accent); }
+        body[data-grip="claw"] .zone-fingers-right { opacity: 0.9; width: 12px; height: 12px; top: 15px; right: 14px; box-shadow: 0 0 10px var(--accent); }
+        body[data-grip="claw"] .zone-palm { opacity: 0.5; width: 35px; height: 25px; bottom: 10px; left: 17px; }
+
+        body[data-grip="fingertip"] .zone-fingers { opacity: 0.9; width: 10px; height: 15px; top: 25px; left: 4px; }
+        body[data-grip="fingertip"] .zone-fingers-right { opacity: 0.9; width: 10px; height: 15px; top: 25px; right: 4px; }
+
+        .grip-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .grip-btn {
+            background: #16161f;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 12px 4px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .grip-btn.active {
+            background: rgba(0, 245, 212, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* 2. DECONSTRUCTED / EXPLODED MOUSE ANIMATIE */
+        .exploded-view-container {
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: #0d0d12;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .layer {
+            width: 80px;
+            height: 30px;
+            border: 2px solid var(--text-muted);
+            border-radius: 8px;
+            background: #16161f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            position: absolute;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .layer-shell   { transform: translateY(-45px); border-color: var(--accent); color: var(--accent); }
+        .layer-battery { transform: translateY(-15px); }
+        .layer-pcb     { transform: translateY(15px); }
+        .layer-sensor  { transform: translateY(45px); border-color: #ff0055; color: #ff0055; }
+
+        /* Actieve animatiestate wanneer de kaart wordt ingedrukt/gehoverd */
+        .bento-card:active .layer-shell, .bento-card:hover .layer-shell { transform: translateY(-75px); background: rgba(0,245,212,0.05); }
+        .bento-card:active .layer-battery, .bento-card:hover .layer-battery { transform: translateY(-25px); }
+        .bento-card:active .layer-pcb, .bento-card:hover .layer-pcb { transform: translateY(25px); }
+        .bento-card:active .layer-sensor, .bento-card:hover .layer-sensor { transform: translateY(75px); background: rgba(255,0,85,0.05); }
+
+        /* 3. INTERACTIEVE DPI & ACCELERATIE TESTER */
+        .dpi-box {
+            background: #0d0d12;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 12px;
+        }
+
+        .aim-arena {
+            width: 100%;
+            height: 100px;
+            background: #060608;
+            border: 1px dashed #27273a;
+            border-radius: 8px;
+            margin-top: 12px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .aim-target {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        /* 4. GEWICHT ELEMENT */
+        .weight-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: inline-block;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* 5. MULTI-SHOP AFFILIATE BUTTONS (JOUW FAVORIETE STIJL) */
+        .shop-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .shop-btn {
+            border-radius: 10px;
+            padding: 10px 4px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            transition: transform 0.1s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .shop-btn:active { transform: scale(0.95); }
+        .shop-btn span { font-size: 1.05rem; font-weight: 900; margin-top: 4px; display: block;}
+        
+        .shop-btn.bol { background-color: var(--color-bol); }
+        .shop-btn.coolblue { background-color: var(--color-coolblue); }
+        .shop-btn.amazon { background-color: var(--color-amazon); }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        
+        .product-subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+    </style>
+</head>
+<body data-grip="palm">
+
+    <header class="hero">
+        <h1>You can't buy <span>skills</span></h1>
+        <p>But these gaming mice can get you damn close.</p>
+    </header>
+
+    <main>
+
+        <h2 class="section-title">1. Jouw Gripstijl</h2>
+        <div class="bento-card">
+            <div class="grip-visualizer">
+                <div class="mouse-outline">
+                    <div class="mouse-wheel"></div>
+                    <div class="grip-zone zone-palm"></div>
+                    <div class="grip-zone zone-fingers"></div>
+                    <div class="grip-zone zone-fingers-right"></div>
+                </div>
+            </div>
+            <div class="grip-buttons">
+                <button class="grip-btn active" onclick="setGrip('palm', this)">Palm</button>
+                <button class="grip-btn" onclick="setGrip('claw', this)">Claw</button>
+                <button class="grip-btn" onclick="setGrip('fingertip', this)">Fingertip</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">2. Premium Engineering</h2>
+        <div class="bento-card" style="text-align: center;">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Klik of hou vast voor exploded view</p>
+            <div class="exploded-view-container">
+                <div class="layer layer-shell">Behuizing</div>
+                <div class="layer layer-battery">Accu (Li-ion)</div>
+                <div class="layer layer-pcb">PCB / Switches</div>
+                <div class="layer layer-sensor">Sensor (32K)</div>
+            </div>
+            <p style="font-size: 0.9rem; font-weight: 600; margin-top: 12px;">Flawless tracking tot 50G acceleratie zonder haperingen.</p>
+        </div>
+
+        <h2 class="section-title">3. DPI & Versnelling</h2>
+        <div class="bento-card">
+            <p style="font-size: 0.9rem;"><strong>DPI bepaalt de snelheid.</strong> Sleep je vinger door de arena hieronder om de virtuele cursor-snelheid te ervaren.</p>
+            <div class="dpi-box">
+                <label style="font-size: 0.8rem; font-weight: 700; display:flex; justify-content:space-between;">
+                    <span>Geselecteerde DPI</span>
+                    <span id="dpi-value" style="color:var(--accent);">1600 DPI</span>
+                </label>
+                <input type="range" id="dpi-slider" min="400" max="6400" step="400" value="1600" style="width:100%; margin-top:8px;" oninput="updateDPI(this.value)">
+            </div>
+            <div class="aim-arena" id="arena">
+                <div class="aim-target" id="target"></div>
+            </div>
+        </div>
+
+        <h2 class="section-title">4. Waarom Gewicht?</h2>
+        <div class="bento-card">
+            <div class="weight-badge">Ultra-Lightweight (~60g)</div>
+            <p style="font-size: 0.95rem; font-weight: 500;">In competitive shooters draait alles om <strong>Inertia (traagheid)</strong>. Een lichtere muis stopt direct wanneer jij stopt. Dit voorkomt dat je 'over-aimed' tijdens een intense flick shot en vermindert pols-vermoeidheid drastisch tijdens lange sessies.</p>
+        </div>
+
+        <h2 class="section-title">De Nummer #1 Selectie</h2>
+        <div class="bento-card">
+            <div class="product-title">Logitech G Pro X Superlight 2</div>
+            <div class="product-subtitle">De absolute koning van de esports-arena</div>
+            
+            <p style="font-size: 0.9rem; color: var(--text-muted);">De meest gekozen muis door professionals. Uitgerust met de HERO 2 sensor en hybride optische switches.</p>
+            
+            <div class="shop-row">
+                <a href="https://www.bol.com" target="_blank" class="shop-btn bol">
+                    bol.
+                    <span>€139</span>
+                </a>
+                <a href="https://www.coolblue.nl" target="_blank" class="shop-btn coolblue">
+                    coolblue
+                    <span>€141</span>
+                </a>
+                <a href="https://www.amazon.nl" target="_blank" class="shop-btn amazon">
+                    amazon
+                    <span>€129</span>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Grip Selector Logica
+        function setGrip(gripName, element) {
+            document.body.setAttribute('data-grip', gripName);
+            document.querySelectorAll('.grip-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // DPI Arena Logica
+        let currentMultiplier = 1.5;
+        const target = document.getElementById('target');
+        const arena = document.getElementById('arena');
+        
+        function updateDPI(val) {
+            document.getElementById('dpi-value').innerText = val + ' DPI';
+            // Bereken een multiplier op basis van de DPI range
+            currentMultiplier = parseFloat(val) / 1000;
+        }
+
+        // Simuleer muis/touch beweging in de arena met DPI versnelling
+        arena.addEventListener('mousemove', (e) => {
+            const rect = arena.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Pas de positie aan vermenigvuldigd met de virtuele DPI
+            target.style.left = Math.min(Math.max(x * currentMultiplier, 0), rect.width) + 'px';
+            target.style.top = Math.min(Math.max(y * currentMultiplier, 0), rect.height) + 'px';
+        });
+
+        arena.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const rect = arena.getBoundingClientRect();
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+            
+            target.style.left = Math.min(Math.max(x * currentMultiplier, 0), rect.width) + 'px';
+            target.style.top = Math.min(Math.max(y * currentMultiplier, 0), rect.height) + 'px';
+        });
+    </script>
+</body>
+</html>
